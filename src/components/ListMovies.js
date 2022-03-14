@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { getDocs } from 'firebase/firestore';
+import { getDocs, deleteDoc, doc } from 'firebase/firestore';
 
 import { movieCollectionRef } from '../lib/firestore.collections';
+import { db } from '../lib/firebase_init';
 
 const ListMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -26,6 +27,18 @@ const ListMovies = () => {
     console.log(movies);
   }, [movies]);
 
+  const deleteMovie = (id) => {
+    // Get a specific doc
+    // database, collectionName, Id;
+
+    const docRef = doc(db, 'movies', id);
+    deleteDoc(docRef)
+      .then(() => {
+        console.log('Movie deleted');
+      })
+      .catch((error) => console.log(error.message));
+  };
+
   return (
     <div>
       <h4>List Movies</h4>
@@ -33,6 +46,13 @@ const ListMovies = () => {
         {movies.map((movie) => (
           <li key={movie.id}>
             <strong>{movie.data.name}</strong> - {movie.id}
+            <button
+              onClick={() => {
+                deleteMovie(movie.id);
+              }}
+            >
+              ❌
+            </button>
           </li>
         ))}
       </ul>

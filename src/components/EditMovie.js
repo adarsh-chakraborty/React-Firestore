@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { db } from '../lib/firebase_init';
-import { doc, updateDoc, setDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
+// import { setDoc } from 'firebase/firestore';
 
 const EditMovie = () => {
   const [name, setName] = useState('');

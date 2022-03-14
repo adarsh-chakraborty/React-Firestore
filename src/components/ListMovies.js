@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../lib/firebase_init';
+import { getDocs } from 'firebase/firestore';
+
+import { movieCollectionRef } from '../lib/firestore.collections';
 
 const ListMovies = () => {
   const [movies, setMovies] = useState([]);
 
   const getMovies = () => {
-    const movieCollectionRef = collection(db, 'movies');
     getDocs(movieCollectionRef)
       .then((response) => {
         const movieData = response.docs.map((doc) => ({
@@ -31,7 +31,9 @@ const ListMovies = () => {
       <h4>List Movies</h4>
       <ul>
         {movies.map((movie) => (
-          <li key={movie.id}>{movie.data.name}</li>
+          <li key={movie.id}>
+            <strong>{movie.data.name}</strong> - {movie.id}
+          </li>
         ))}
       </ul>
     </div>

@@ -1,4 +1,5 @@
 import AddMovie from './components/AddMovie';
+import EditMovie from './components/EditMovie';
 import ListMovies from './components/ListMovies';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <ListMovies />
       <AddMovie />
+      <EditMovie />
     </>
   );
 }

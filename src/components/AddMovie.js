@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../lib/firebase_init';
+import { addDoc } from 'firebase/firestore';
+import { movieCollectionRef } from '../lib/firestore.collections';
 
 const AddMovie = () => {
   const [name, setName] = useState('');
@@ -10,8 +10,7 @@ const AddMovie = () => {
 
     if (name === '') return;
 
-    const moviesCollectionRef = collection(db, 'movies');
-    addDoc(moviesCollectionRef, { name })
+    addDoc(movieCollectionRef, { name })
       .then((response) => console.log(response))
       .catch((err) => console.log(err));
   }

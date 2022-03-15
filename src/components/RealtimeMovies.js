@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { onSnapshot, doc, deleteDoc } from 'firebase/firestore';
 import { movieCollectionRef } from '../lib/firestore.collections';
 import { db } from '../lib/firebase_init';
+import Movie from './Movie';
 
 const RealtimeMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -33,16 +34,7 @@ const RealtimeMovies = () => {
       <h4>Realtime Movies</h4>
       <ul>
         {movies.map((movie) => (
-          <li key={movie.id}>
-            <strong>{movie.data.name}</strong> - {movie.id}
-            <button
-              onClick={() => {
-                deleteMovie(movie.id);
-              }}
-            >
-              ❌
-            </button>
-          </li>
+          <Movie movie={movie} onDeleteMovie={deleteMovie} />
         ))}
       </ul>
     </>

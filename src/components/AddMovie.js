@@ -18,7 +18,7 @@ const AddMovie = () => {
     <>
       <h4>Add Movie</h4>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <label htmlFor="name">Movie Name</label>
         <input
           id="name"

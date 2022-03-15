@@ -29,7 +29,7 @@ const EditMovie = () => {
     <>
       <h4>Edit Movie</h4>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <label htmlFor="id">ID</label>
         <input
           id="id"
